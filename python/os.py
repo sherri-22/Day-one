@@ -3,3 +3,4 @@ import os
 os.system( 'hostname' )
 print("Today is " ) 
 os.system('date')
+os.system('cal')
