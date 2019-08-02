@@ -14,3 +14,4 @@ print(new_message)
 
 greet = 'Hello'
 name = greet
+print(1024*4)
