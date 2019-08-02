@@ -1,0 +1,19 @@
+- name: Install common software requirements
+  hosts: dp2
+  tasks:
+    - name: install epel repo
+      yum:
+        name: epel-release
+        state: present
+        update_cache: true
+      become: true
+    - name: install common utils 
+      yum:
+        name: 
+          - telnet
+          - wget
+          - net-tools
+          - lsof
+        state: present
+        update_cache: true
+      become: true
