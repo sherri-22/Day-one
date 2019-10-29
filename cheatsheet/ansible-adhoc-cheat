@@ -1,0 +1,10 @@
+ansible-playbook  -i pci -l misc -bK --become-method=su pci.yml   	#PCI:  To push the group variable n roles
+ansible all -i pci -a "nproc"    	#PCI: adhoc non-root commands
+ansible misc -i pci  -a "/sbin/ifconfig"    
+ansible all -i pci -m shell -bK --become-method=su  -a 'grep 600 /etc/ssh/sshd_config'	#PCI: ad-hoc/ requires root
+	
+ansible test-ansible -i test -K -become-user=root -a "ifconfig"	#Non-PCI: ad-hoc/ requires root
+ansible test-ansible -i test  -a "uptime"   	#Non-PCI: adhoc non-root commands
+ansible-playbook -i production -bK user-all.yml	#Non-PCI: Playbooks SSH as your user and Escalate to `root` 
+ansible-playbook -i production -u root -k user-all.yml	#Non-PCI: Playbooks SSH as `root
+
