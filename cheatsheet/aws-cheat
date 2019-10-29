@@ -1,0 +1,17 @@
+######################S3###################	
+aws s3 ls --profile prod s3://abc-cash-card-img-prod 	#List the objects in an S3 bucket 
+aws s3  --profile devops cp s3://abc-cash-card-img-test/Essentials/  /Users/smalik/abc-cash-card-img-test/Essentials --recursive	#Download files from S3
+aws s3 --profile prod cp /Users/smalik/abc-cash-card-img-test/Essentials s3://abc-cash-card-img-prod/Essentials --recursive	#Upload files to S3
+
+
+##############EC2 snapshots#################
+
+
+
+aws --profile prod ec2 describe-snapshots  |grep snap-036e5b2876cc6b697 -B13  #List details of a snapshot
+
+aws --profile prod ec2 create-snapshot --volume-id vol-0d3857bf0fe281b1b  --description 'Snapshot of EC2 isntance i-031532823d7250873 (Analytics-deploy)' --tag-specifications 'ResourceType=snapshot,Tags=[{Key=purpose,Value=prod-first backup},{Key=Requestor,Value=smalik},{Key=Name,Value=Analytics-deploy}]'
+#Create snapshot
+
+aws --profile prod ec2 delete-snapshot --snapshot-id snap-036e5b2876cc6b697  #Delete snapshot 
+
